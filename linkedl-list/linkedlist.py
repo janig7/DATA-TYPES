@@ -10,6 +10,13 @@ class LinkedList():
             for elem in nodes:
                 node.next = Node(data=elem)
                 node = node.next
+    
+    def __iter__(self):
+        node = self.head
+
+        while node is not None:
+            yield node
+            node = node.next
 
             
 
