@@ -27,6 +27,7 @@ class LinkedList:
             node = node.next
         nodes.append(None)
         return ' -> '.join((f'{elem}' for elem in nodes))
+    
 
     def add_first(self, data):
         node = Node(data=data)
@@ -42,6 +43,24 @@ class LinkedList:
         for current_node in self:
             pass
         current_node.next = node
+    
+    def add_after(self, target_node_data, data):
+        if not self.head:
+            raise Exception('List is empty!')
+
+        new_node = Node(data=data)
+
+        for node in self:
+            if node.data == target_node_data:
+                new_node.next = node.next
+                node.next = new_node
+                return
+        
+        raise Exception(f'Node with data {target_node_data} not found!')
+
+    def add_before(self, target_node_data, data):
+
+
 
 
 if __name__ == "__main__":
