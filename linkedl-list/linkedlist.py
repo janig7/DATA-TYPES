@@ -1,4 +1,5 @@
 from node import Node
+from linked_list_exceptions import EmptyList, DataNotFound
 
 
 class LinkedList:
@@ -27,7 +28,6 @@ class LinkedList:
             node = node.next
         nodes.append(None)
         return ' -> '.join((f'{elem}' for elem in nodes))
-    
 
     def add_first(self, data):
         node = Node(data=data)
@@ -43,10 +43,10 @@ class LinkedList:
         for current_node in self:
             pass
         current_node.next = node
-    
+
     def add_after(self, target_node_data, data):
         if not self.head:
-            raise Exception('List is empty!')
+            raise EmptyList
 
         new_node = Node(data=data)
 
@@ -55,14 +55,12 @@ class LinkedList:
                 new_node.next = node.next
                 node.next = new_node
                 return
-        
-        raise Exception(f'Node with data {target_node_data} not found!')
+
+        raise DataNotFound(target_node_data)
 
     def add_before(self, target_node_data, data):
         if not self.head:
-            raise Exception('List is empty!')
-
-        
+            raise EmptyList
 
         if self.head.data == target_node_data:
             return self.add_first(data)
@@ -75,17 +73,12 @@ class LinkedList:
                 new_node.next = node
                 return
             prev_node = node
-        
-        raise Exception(f'Node with data {target_node_data} not found!')
 
-
-
+        raise DataNotFound(target_node_data)
 
 
 if __name__ == "__main__":
-    linked_list = LinkedList([1,2,3, 2, 3,4,5, 4])
-    linked_list.add_last(2)
+    linked_list = LinkedList([3, 9, 6])
     linked_list.add_before(2, 8)
-    linked_list.add_after(3, 2137)
 
     print(linked_list)
