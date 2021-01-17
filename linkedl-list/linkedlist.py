@@ -76,6 +76,24 @@ class LinkedList:
 
         raise DataNotFound(target_node_data)
 
+    def remove_node(self, target_node_data, data):
+        if not self.head:
+            raise EmptyList
+
+        if self.head.data == target_node_data:
+            self.head = self.head.next
+            return
+
+        prev_node = self.head
+
+        for node in self:
+            if node.data == target_node_data:
+                prev_node.next = node.next
+                return
+            prev_node = node
+
+        raise DataNotFound(target_node_data)
+
 
 if __name__ == "__main__":
     linked_list = LinkedList([3, 9, 6])
