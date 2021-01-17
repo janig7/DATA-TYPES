@@ -1,6 +1,7 @@
 from node import Node
 
-class LinkedList():
+
+class LinkedList:
     def __init__(self, nodes=None):
         self.head = None
 
@@ -10,7 +11,7 @@ class LinkedList():
             for elem in nodes:
                 node.next = Node(data=elem)
                 node = node.next
-    
+
     def __iter__(self):
         node = self.head
 
@@ -18,5 +19,6 @@ class LinkedList():
             yield node
             node = node.next
 
-            
-
+    def add_first(self, node):
+        node.next = self.head
+        self.head = node
