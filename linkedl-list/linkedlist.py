@@ -26,7 +26,7 @@ class LinkedList:
             nodes.append(node.data)
             node = node.next
         nodes.append(None)
-        return ' -> '.join((str(elem) for elem in nodes))
+        return ' -> '.join((f'{elem}' for elem in nodes))
 
     def add_first(self, data):
         node = Node(data=data)
@@ -45,7 +45,7 @@ class LinkedList:
 
 
 if __name__ == "__main__":
-    linked_list = LinkedList([1, 2, 3, 4])
+    linked_list = LinkedList([[1,2,3], 2, [3,4,5], 4])
     linked_list.add_last(2)
     linked_list.add_first(3)
     print(linked_list)
