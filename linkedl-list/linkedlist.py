@@ -19,6 +19,29 @@ class LinkedList:
             yield node
             node = node.next
 
-    def add_first(self, node):
+    def __repr__(self):
+        nodes = [elem for elem in self]
+        nodes.append(None)
+        return ' -> '.join((str(elem) for elem in nodes))
+
+    def add_first(self, data):
+        node = Node(data=data)
+
         node.next = self.head
         self.head = node
+
+    def add_last(self, data):
+        node = Node(data=data)
+        if not self.head:
+            self.head = node
+
+        for current_node in self:
+            pass
+        current_node.next = node
+
+
+if __name__ == "__main__":
+    linked_list = LinkedList(['1', '2', '3', '4'])
+    linked_list.add_last('2')
+    linked_list.add_first('3')
+    print(linked_list)
