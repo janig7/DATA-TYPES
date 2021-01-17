@@ -20,7 +20,11 @@ class LinkedList:
             node = node.next
 
     def __repr__(self):
-        nodes = [elem for elem in self]
+        node = self.head
+        nodes = []
+        while node is not None:
+            nodes.append(node.data)
+            node = node.next
         nodes.append(None)
         return ' -> '.join((str(elem) for elem in nodes))
 
@@ -41,7 +45,7 @@ class LinkedList:
 
 
 if __name__ == "__main__":
-    linked_list = LinkedList(['1', '2', '3', '4'])
-    linked_list.add_last('2')
-    linked_list.add_first('3')
+    linked_list = LinkedList([1, 2, 3, 4])
+    linked_list.add_last(2)
+    linked_list.add_first(3)
     print(linked_list)
