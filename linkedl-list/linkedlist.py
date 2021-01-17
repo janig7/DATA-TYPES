@@ -59,12 +59,33 @@ class LinkedList:
         raise Exception(f'Node with data {target_node_data} not found!')
 
     def add_before(self, target_node_data, data):
+        if not self.head:
+            raise Exception('List is empty!')
+
+        
+
+        if self.head.data == target_node_data:
+            return self.add_first(data)
+
+        new_node = Node(data=data)
+        prev_node = self.head
+        for node in self:
+            if node.data == target_node_data:
+                prev_node.next = new_node
+                new_node.next = node
+                return
+            prev_node = node
+        
+        raise Exception(f'Node with data {target_node_data} not found!')
+
 
 
 
 
 if __name__ == "__main__":
-    linked_list = LinkedList([[1,2,3], 2, [3,4,5], 4])
+    linked_list = LinkedList([1,2,3, 2, 3,4,5, 4])
     linked_list.add_last(2)
-    linked_list.add_first(3)
+    linked_list.add_before(2, 8)
+    linked_list.add_after(3, 2137)
+
     print(linked_list)
