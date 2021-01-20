@@ -17,3 +17,18 @@ class Vertex:
     
     def get_weight(self, neighbor):
         return self.adjacent[neighbor]
+
+
+class Graph:
+    def __init__(self):
+        self.vert_dict = {}
+        self.num_vertices = 0
+    
+    def __iter__(self):
+        return iter(self.vert_dict.values())
+    
+    def add_vertex(self, node):
+        self.num_vertices += 1
+        new_vertex = Vertex(node)
+        self.vert_dict[node] = new_vertex
+        return new_vertex
